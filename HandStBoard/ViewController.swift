@@ -297,7 +297,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         view.addSubview(clearButton)
         
         let undoButton = UIButton(type: .custom)
-        undoButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*3,y:gap/3, width: gap*0.4, height: gap*0.4)
+        undoButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*2.5,y:gap/3, width: gap*0.4, height: gap*0.4)
         let undoPicture = UIImage(named: "undoButtonImage")
         undoButton.setImage(undoPicture, for: .normal)
         undoButton.imageView?.contentMode = .scaleAspectFill
@@ -306,17 +306,17 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         undoButton.addTarget(self, action: #selector(undoTapped(_:)), for: .touchDown)
         view.addSubview(undoButton)
         
-        let segueButton1 = UIButton(type: .custom)
-        segueButton1.frame = CGRect(x:boxView.frame.minX,y:gap/3, width: gap*0.8, height: gap*0.4)
+        let ToAllCourtButton = UIButton(type: .custom)
+        ToAllCourtButton.frame = CGRect(x:boxView.frame.minX,y:gap/3, width: gap*0.8, height: gap*0.4)
         let half_court_Image = UIImage(named: "halfCourtImage")
-        segueButton1.setImage(half_court_Image, for: .normal)
-        segueButton1.imageView?.contentMode = .scaleAspectFill
-        segueButton1.layer.masksToBounds = true
-        segueButton1.layer.cornerRadius = gap/15
-        segueButton1.addTarget(self, action: #selector(goToHalfPage(_:)), for: .touchDown)
-        view.addSubview(segueButton1)
+        ToAllCourtButton.setImage(half_court_Image, for: .normal)
+        ToAllCourtButton.imageView?.contentMode = .scaleAspectFill
+        ToAllCourtButton.layer.masksToBounds = true
+        ToAllCourtButton.layer.cornerRadius = gap/15
+        ToAllCourtButton.addTarget(self, action: #selector(goToHalfPage(_:)), for: .touchDown)
+        view.addSubview(ToAllCourtButton)
         
-        judgeButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*5,y:gap/3, width: gap*0.4, height: gap*0.4)
+        judgeButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*4,y:gap/3, width: gap*0.4, height: gap*0.4)
         //        let picture = UIImage(named: "playerImage")
         judgeButton.backgroundColor = UIColor.black
         judgeButton.setImage(falseButton, for: .normal)
@@ -326,6 +326,27 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         judgeButton.layer.cornerRadius = gap/15
         judgeButton.addTarget(self, action: #selector(judge(_:)), for: .touchDown)
         view.addSubview(judgeButton)
+        
+        let HalfPalleteButton = UIButton(type: .custom)
+        HalfPalleteButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4 * 5.5, y: gap/3, width: gap*0.4, height: gap*0.4)
+        let HalfPalletPicture = UIImage(named: "undoImage2")
+        HalfPalleteButton.setImage(HalfPalletPicture, for: .normal)
+        HalfPalleteButton.imageView?.contentMode = .scaleAspectFill
+        HalfPalleteButton.layer.masksToBounds = true
+        HalfPalleteButton.layer.cornerRadius = gap/15
+        //eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        view.addSubview(HalfPalleteButton)
+                
+//        消しゴムのボタン
+        let eraserButton = UIButton(type: .custom)
+        eraserButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*7, y: gap/3, width: gap*0.4, height: gap*0.4)
+        let erasePicture = UIImage(named: "undoImage2")
+        eraserButton.setImage(erasePicture, for: .normal)
+        eraserButton.imageView?.contentMode = .scaleAspectFill
+        eraserButton.layer.masksToBounds = true
+                eraserButton.layer.cornerRadius = gap/15
+        //eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        view.addSubview(eraserButton)
         
         let startRecordButton = UIButton()
         startRecordButton.setTitle("Start", for: .normal)

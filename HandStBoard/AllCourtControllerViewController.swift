@@ -178,16 +178,19 @@ class AllCourtControllerViewController: UIViewController,UIGestureRecognizerDele
     
         let box_size = (boxView2.frame.maxX - boxView2.frame.minX)/10
         
-        let button4 = UIButton(type: .custom)
-        button4.frame = CGRect(x: boxView2.frame.minX, y: offset_line/2 - box_size/2, width: box_size*2, height: box_size)
+        //ハーフコートに行くボタン
+        let ToHalfCourtButton = UIButton(type: .custom)
+        //ここだけminXが基準になっていることに注意
+        ToHalfCourtButton.frame = CGRect(x: boxView2.frame.minX, y: offset_line/2 - box_size/2, width: box_size*2, height: box_size)
         let picture = UIImage(named: "AllCourtImage")
-        button4.setImage(picture, for: .normal)
-        button4.imageView?.contentMode = .scaleAspectFill
-        button4.layer.masksToBounds = true
-        button4.layer.cornerRadius = box_size / 8
-        button4.addTarget(self, action: #selector(goToAllPage(_:)), for: .touchDown)
-        view.addSubview(button4)
+        ToHalfCourtButton.setImage(picture, for: .normal)
+        ToHalfCourtButton.imageView?.contentMode = .scaleAspectFill
+        ToHalfCourtButton.layer.masksToBounds = true
+        ToHalfCourtButton.layer.cornerRadius = box_size / 8
+        ToHalfCourtButton.addTarget(self, action: #selector(goToAllPage(_:)), for: .touchDown)
+        view.addSubview(ToHalfCourtButton)
         
+        //メモをクリアにするボタン
         let clearButton2 = UIButton(type: .custom)
         clearButton2.frame = CGRect(x: boxView2.frame.maxX - box_size, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let picture1 = UIImage(named: "clearImage2")
@@ -199,7 +202,7 @@ class AllCourtControllerViewController: UIViewController,UIGestureRecognizerDele
         view.addSubview(clearButton2)
         
         let undoButton2 = UIButton(type: .custom)
-        undoButton2.frame = CGRect(x: boxView2.frame.maxX - box_size*3, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+        undoButton2.frame = CGRect(x: boxView2.frame.maxX - box_size*2.5, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let picture2 = UIImage(named: "undoImage2")
         undoButton2.setImage(picture2, for: .normal)
         undoButton2.imageView?.contentMode = .scaleAspectFill
@@ -209,7 +212,7 @@ class AllCourtControllerViewController: UIViewController,UIGestureRecognizerDele
         view.addSubview(undoButton2)
         
 //        let judgeButton2 = UIButton(type: .custom)
-        judgeButton2.frame = CGRect(x: boxView2.frame.maxX - box_size*5, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+        judgeButton2.frame = CGRect(x: boxView2.frame.maxX - box_size*4, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let picture3 = UIImage(named: "falseImage2")
         judgeButton2.setImage(picture3, for: .normal)
         judgeButton2.imageView?.contentMode = .scaleAspectFill
@@ -217,6 +220,27 @@ class AllCourtControllerViewController: UIViewController,UIGestureRecognizerDele
         judgeButton2.layer.cornerRadius = box_size / 8
         judgeButton2.addTarget(self, action: #selector(judge(_:)), for: .touchDown)
         view.addSubview(judgeButton2)
+        
+        let palleteButton = UIButton(type: .custom)
+        palleteButton.frame = CGRect(x: boxView2.frame.maxX - box_size * 5.5, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+        let palletPicture = UIImage(named: "undoImage2")
+        palleteButton.setImage(palletPicture, for: .normal)
+        palleteButton.imageView?.contentMode = .scaleAspectFill
+        palleteButton.layer.masksToBounds = true
+        palleteButton.layer.cornerRadius = box_size/8
+        //eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        view.addSubview(palleteButton)
+        
+        //消しゴムのボタン
+        let eraserButton = UIButton(type: .custom)
+        eraserButton.frame = CGRect(x: boxView2.frame.maxX - box_size*7, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+        let erasePicture = UIImage(named: "undoImage2")
+        eraserButton.setImage(erasePicture, for: .normal)
+        eraserButton.imageView?.contentMode = .scaleAspectFill
+        eraserButton.layer.masksToBounds = true
+        eraserButton.layer.cornerRadius = box_size/8
+//        eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        view.addSubview(eraserButton)
         
         let player3_num = 7
         let angle2 = Double.pi*3/2
