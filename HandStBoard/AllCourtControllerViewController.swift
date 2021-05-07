@@ -221,6 +221,7 @@ class AllCourtControllerViewController: UIViewController,UIGestureRecognizerDele
         judgeButton2.addTarget(self, action: #selector(judge(_:)), for: .touchDown)
         view.addSubview(judgeButton2)
         
+        //パレットのボタン
         let palleteButton = UIButton(type: .custom)
         palleteButton.frame = CGRect(x: boxView2.frame.maxX - box_size * 5.5, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let palletPicture = UIImage(named: "undoImage2")
