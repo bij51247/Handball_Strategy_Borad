@@ -388,6 +388,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         
         //playerの数
         let player2_num = 7
+        //プレイヤーの基準を画面の一番上に設定
         let player2_offset = boxView.frame.minY
         players2[0] = UILabel(frame: CGRect(x:boxView.frame.minX + boxView.frame.width*0.5 - offset, y: boxView.frame.height*0.9 + offset + player2_offset, width: radius, height: radius))
         players2[6] = UILabel(frame: CGRect(x:boxView.frame.minX + boxView.frame.width*0.1 - offset, y: boxView.frame.height*0.9 + offset + player2_offset, width: radius, height: radius))
