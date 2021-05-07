@@ -413,6 +413,8 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
             let panGesture:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.panGestureHandler(_:)))
             player2.addGestureRecognizer(panGesture)
         }
+        
+        //ボールの半径
         let ballRadius = courtLength/25
         let ballOffset = ballRadius/2
         ball = UILabel(frame: CGRect(x:view.frame.width/2 - ballOffset, y:view.frame.height/2 - ballOffset, width: ballRadius, height:ballRadius))
