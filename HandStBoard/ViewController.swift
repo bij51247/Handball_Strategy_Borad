@@ -296,6 +296,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         clearButton.addTarget(self, action: #selector(clearTapped(_:)), for: .touchDown)
         view.addSubview(clearButton)
         
+        //一度取り消す
         let undoButton = UIButton(type: .custom)
         undoButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*2.5,y:gap/3, width: gap*0.4, height: gap*0.4)
         let undoPicture = UIImage(named: "undoButtonImage")
