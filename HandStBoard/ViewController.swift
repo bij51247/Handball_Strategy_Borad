@@ -9,30 +9,43 @@ import UIKit
 import CoreGraphics
 import ReplayKit
 
-
+//ラベルの定義
+//赤の選手
 var players1:[UILabel] = [UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel()]
+
+//青の選手
 var players2:[UILabel] = [UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel()]
+
+//ボール
 var ball:UILabel?
+
+
+
 class ViewController:UIViewController,UIGestureRecognizerDelegate{
     
 //    let recorder = RPScreenRecorder.shared()
 //    var iconImageView = UIImageView()
     
+    //
     var flag:Bool = false
     @IBOutlet weak var mysegment: UISegmentedControl!
     @IBOutlet var drawView: DrawView!
     
+    //回らないように画面を固定
     override var shouldAutorotate: Bool{
         get{
             return false
         }
     }
 
+    //ポートレイトで固定
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
         get{
             return.portrait
         }
     }
+    
+    //コートの描画
     func courtLine(_ rect:CGRect){
         
         //6mラインの弧の中心
@@ -41,15 +54,19 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         let sP_startY = rect.maxY*0.15
         let sP_endY =  rect.maxY*0.85
         
+        //7mラインの始点と終点の定義
         let seven_start_x = rect.width*0.475
         let seven_end_x = rect.width*0.525
         let seven_start_y = rect.height*0.175
         let seven_end_y = rect.height*0.825
         
+        //9ラインの太さ
         let ninemeter_line = rect.width/20
         
+        //ラインの太さ
         let line_width = rect.width/60
     
+        //センターライン
         let centerPath = UIBezierPath()
         centerPath.move(to: CGPoint(x: rect.minX,y: rect.maxY/2))
         centerPath.addLine(to:CGPoint(x: rect.maxX, y: rect.maxY/2))
@@ -58,7 +75,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         UIColor.black.setStroke()
         centerPath.stroke()
         
-        
+        //上側の6mライン(弧以外の部分）
         let sixmeterPath_center1 = UIBezierPath()
         sixmeterPath_center1.move(to: CGPoint(x: sP_startX, y: sP_startY))
         sixmeterPath_center1.addLine(to: CGPoint(x: sP_endX, y: sP_startY))
@@ -67,6 +84,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         UIColor.black.setStroke()
         sixmeterPath_center1.stroke()
         
+        //下側の6mライン(弧以外の部分）
          let sixmeterPath_center2 = UIBezierPath()
          sixmeterPath_center2.move(to: CGPoint(x: sP_startX, y: sP_endY))
          sixmeterPath_center2.addLine(to: CGPoint(x: sP_endX, y: sP_endY))
@@ -75,27 +93,32 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
          UIColor.black.setStroke()
          sixmeterPath_center2.stroke()
         
+        //上側6mライン　右側の弧
         let right_arc1 = UIBezierPath(arcCenter: CGPoint(x: sP_endX, y: rect.minY), radius: rect.width*0.3, startAngle: 0, endAngle: CGFloat(Double.pi)/2, clockwise: true)
         let color = UIColor.black
         color.setStroke()
         right_arc1.lineWidth = line_width
         right_arc1.stroke()
         
+        //上側の6mライン 左側の弧
         let left_arc1 = UIBezierPath(arcCenter: CGPoint(x: sP_startX, y: rect.minY), radius: rect.width*0.3, startAngle: 0, endAngle: CGFloat(Double.pi)/2, clockwise: false)
         color.setStroke()
         left_arc1.lineWidth = line_width
         left_arc1.stroke()
         
+        //下側の6mライン　左側の弧
         let left_arc2 = UIBezierPath(arcCenter: CGPoint(x: sP_startX, y: rect.maxY), radius: rect.width*0.3, startAngle: CGFloat(Double.pi), endAngle: CGFloat(Double.pi)*3/2, clockwise: true)
         color.setStroke()
         left_arc2.lineWidth = line_width
         left_arc2.stroke()
 
+        //下側の6mライン 右側の弧
         let right_arc2 = UIBezierPath(arcCenter: CGPoint(x: sP_endX, y: rect.maxY), radius: rect.width*0.3, startAngle:CGFloat(Double.pi)*3/2,endAngle: CGFloat(Double.pi)*2, clockwise: true)
         color.setStroke()
         right_arc2.lineWidth = line_width
         right_arc2.stroke()
         
+        //上側の7mライン
         let seven_1 = UIBezierPath()
         seven_1.move(to: CGPoint(x: seven_start_x, y: seven_start_y))
         seven_1.addLine(to: CGPoint(x: seven_end_x, y: seven_start_y))
@@ -103,6 +126,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         seven_1.lineWidth = line_width
         seven_1.stroke()
         
+        //下側の7mライン
         let seven_2 = UIBezierPath()
         seven_2.move(to: CGPoint(x: seven_start_x, y: seven_end_y))
         seven_2.addLine(to: CGPoint(x: seven_end_x, y: seven_end_y))
@@ -110,19 +134,21 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         seven_2.lineWidth = line_width
         seven_2.stroke()
         
+        //上側の9mラインの右側の弧
         let ninemeter_right_arc1 = UIBezierPath(arcCenter: CGPoint(x: sP_endX, y: rect.minY), radius: rect.width*0.45, startAngle:CGFloat(Double.pi)/6, endAngle: CGFloat(Double.pi)/2, clockwise: true)
         color.setStroke()
         ninemeter_right_arc1.setLineDash([ninemeter_line,ninemeter_line], count: 2, phase: 0)
         ninemeter_right_arc1.lineWidth = line_width
         ninemeter_right_arc1.stroke()
         
+        //上側の9mラインの左側の弧
         let ninemeter_left_arc1 = UIBezierPath(arcCenter: CGPoint(x: sP_startX, y: rect.minY), radius: rect.width*0.45, startAngle:CGFloat(Double.pi - Double.pi/6) , endAngle: CGFloat(Double.pi)/2, clockwise: false)
         color.setStroke()
-        
         ninemeter_left_arc1.setLineDash([ninemeter_line,ninemeter_line], count: 2, phase: 0)
         ninemeter_left_arc1.lineWidth = line_width
         ninemeter_left_arc1.stroke()
         
+        //上側　9mラインの真ん中の線
         let nine_1 = UIBezierPath();
         nine_1.move(to: CGPoint(x: seven_start_x, y: rect.height*0.225))
         nine_1.addLine(to: CGPoint(x: seven_end_x, y:rect.height*0.225))
@@ -130,18 +156,22 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         nine_1.lineWidth = line_width
         nine_1.stroke()
         
+        //下側　9mライン　右の弧
         let ninemeter_right_arc2 = UIBezierPath(arcCenter: CGPoint(x: sP_endX, y: rect.maxY), radius: rect.width*0.45, startAngle:CGFloat(Double.pi)*3/2,endAngle: CGFloat(Double.pi*2 - Double.pi/6), clockwise: true)
              color.setStroke()
         ninemeter_right_arc2.setLineDash([ninemeter_line,ninemeter_line], count: 2, phase: 0)
         ninemeter_right_arc2.lineWidth = line_width
         ninemeter_right_arc2.stroke()
         
+        //下側　9mライン　左の弧
         let ninemeter_left_arc2 = UIBezierPath(arcCenter: CGPoint(x: sP_startX, y: rect.maxY), radius: rect.width*0.45, startAngle: CGFloat(Double.pi + Double.pi/6), endAngle: CGFloat(Double.pi)*3/2, clockwise: true)
         color.setStroke()
         ninemeter_left_arc2.setLineDash([ninemeter_line,ninemeter_line], count: 2, phase: 0)
         ninemeter_left_arc2.lineWidth = line_width
         ninemeter_left_arc2.stroke()
         
+        
+        //下側 9mライン 真ん中の線
          let nine_2 = UIBezierPath();
          nine_2.move(to: CGPoint(x: seven_start_x, y: rect.height*0.775))
          nine_2.addLine(to: CGPoint(x: seven_end_x, y:rect.height*0.775))
@@ -149,6 +179,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
          nine_2.lineWidth = line_width
          nine_2.stroke()
         
+        //上側　ゴールの線
         let goalLine1 = UIBezierPath()
         goalLine1.move(to: CGPoint(x: rect.maxX*0.425, y: rect.minY+line_width*1.5))
         goalLine1.addLine(to: CGPoint(x: rect.maxX*0.575, y: rect.minY+line_width*1.5))
@@ -157,6 +188,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         goalLine1.lineWidth = line_width
         goalLine1.stroke()
         
+        //下側 ゴールの線
         let goalLine2 = UIBezierPath()
         goalLine2.move(to: CGPoint(x: rect.maxX*0.425, y: rect.maxY-line_width*1.5))
         goalLine2.addLine(to: CGPoint(x: rect.maxX*0.575, y: rect.maxY-line_width*1.5))
@@ -167,12 +199,18 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         
     }
     
-    
+    //この関数は何？
     func makeCourtImage(width w: CGFloat,height h:CGFloat) -> UIImage{
+        
+        //コートの大きさを定義
         let size = CGSize(width: w, height: h)
+        
+        //
         UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
         
+        //
         let context = UIGraphicsGetCurrentContext()
+        //
         let drawRect = CGRect(x: 0, y: 0, width: w, height: h)
     
         courtLine(drawRect)
@@ -192,9 +230,14 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         
     }
     
+    //クリアの関数
     @objc func clearTapped(_ sender:Any){
+        //関数を実行
         drawView.clear()
     }
+    
+    //色を変える関数
+    //機能していない
     @IBAction func colorChanged(_ sender: UIButton){
         var c:UIColor!
         switch mysegment.selectedSegmentIndex{
@@ -211,6 +254,8 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         }
         drawView.setDrawingColor(color: c)
     }
+    
+    //
     @objc func undoTapped(_ sender:Any){
         
         drawView.undo()
@@ -296,7 +341,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         clearButton.addTarget(self, action: #selector(clearTapped(_:)), for: .touchDown)
         view.addSubview(clearButton)
         
-        //一度取り消す
+        //一つ前に戻るボタン
         let undoButton = UIButton(type: .custom)
         undoButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*2.5,y:gap/3, width: gap*0.4, height: gap*0.4)
         let undoPicture = UIImage(named: "undoButtonImage")
