@@ -12,7 +12,7 @@ var players3:[UILabel] = [UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILa
 var players4:[UILabel] = [UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel(),UILabel()]
 var ball2:UILabel?
 
-class AllCourtControllerViewController: UIViewController,UIGestureRecognizerDelegate{
+class HalfCourtControllerViewController: UIViewController,UIGestureRecognizerDelegate{
     var flag2:Bool = false
     @IBOutlet weak var mysegment2:UISegmentedControl!
     @IBOutlet  var drawView2: DrawView2!

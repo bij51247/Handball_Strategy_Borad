@@ -21,7 +21,7 @@ var ball:UILabel?
 
 
 
-class ViewController:UIViewController,UIGestureRecognizerDelegate{
+class AllCourtViewController:UIViewController,UIGestureRecognizerDelegate{
     
 //    let recorder = RPScreenRecorder.shared()
 //    var iconImageView = UIImageView()
@@ -394,12 +394,13 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
         //eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
         view.addSubview(eraserButton)
         
-        let startRecordButton = UIButton()
-        startRecordButton.setTitle("Start", for: .normal)
-        startRecordButton.backgroundColor = .lightGray
-        startRecordButton.frame = CGRect(x: self.view.frame.width/3, y: self.view.frame.height/5, width: 50, height: 50)
-        startRecordButton.addTarget(self, action: #selector(TouchRecord), for: .touchDown)
-        view.addSubview(startRecordButton)
+        //レコードボタン（必要ないのでいづれ消す）
+//        let startRecordButton = UIButton()
+//        startRecordButton.setTitle("Start", for: .normal)
+//        startRecordButton.backgroundColor = .lightGray
+//        startRecordButton.frame = CGRect(x: self.view.frame.width/3, y: self.view.frame.height/5, width: 50, height: 50)
+//        startRecordButton.addTarget(self, action: #selector(TouchRecord), for: .touchDown)
+//        view.addSubview(startRecordButton)
 //
         let player1_num = 7
         let angle = Double.pi
@@ -533,7 +534,7 @@ class ViewController:UIViewController,UIGestureRecognizerDelegate{
    
 }
 
-extension ViewController:RPPreviewViewControllerDelegate{
+extension AllCourtViewController:RPPreviewViewControllerDelegate{
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         previewController.popoverPresentationController?.sourceView = self.view
         dismiss(animated: true, completion: nil)

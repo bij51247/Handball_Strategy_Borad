@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		7DA815BF2495D04000FEBE85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815BE2495D04000FEBE85 /* AppDelegate.swift */; };
 		7DA815C12495D04000FEBE85 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815C02495D04000FEBE85 /* SceneDelegate.swift */; };
-		7DA815C32495D04000FEBE85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815C22495D04000FEBE85 /* ViewController.swift */; };
+		7DA815C32495D04000FEBE85 /* AllCourtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815C22495D04000FEBE85 /* AllCourtViewController.swift */; };
 		7DA815C62495D04000FEBE85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA815C42495D04000FEBE85 /* Main.storyboard */; };
 		7DA815C82495D04400FEBE85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DA815C72495D04400FEBE85 /* Assets.xcassets */; };
 		7DA815CB2495D04400FEBE85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA815C92495D04400FEBE85 /* LaunchScreen.storyboard */; };
 		7DA815D62495D04400FEBE85 /* HandStBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815D52495D04400FEBE85 /* HandStBoardTests.swift */; };
 		7DA815E12495D04400FEBE85 /* HandStBoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815E02495D04400FEBE85 /* HandStBoardUITests.swift */; };
-		7DA815F12495D38C00FEBE85 /* AllCourtControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815F02495D38C00FEBE85 /* AllCourtControllerViewController.swift */; };
+		7DA815F12495D38C00FEBE85 /* HalfCourtControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815F02495D38C00FEBE85 /* HalfCourtControllerViewController.swift */; };
 		7DA815F32495D3D400FEBE85 /* DrawView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815F22495D3D400FEBE85 /* DrawView2.swift */; };
 		7DA815F52495EB5300FEBE85 /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA815F42495EB5300FEBE85 /* DrawView.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +41,7 @@
 		7DA815BB2495D04000FEBE85 /* Handball Strategy Board.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Handball Strategy Board.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DA815BE2495D04000FEBE85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DA815C02495D04000FEBE85 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7DA815C22495D04000FEBE85 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7DA815C22495D04000FEBE85 /* AllCourtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCourtViewController.swift; sourceTree = "<group>"; };
 		7DA815C52495D04000FEBE85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7DA815C72495D04400FEBE85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DA815CA2495D04400FEBE85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		7DA815DC2495D04400FEBE85 /* HandStBoardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HandStBoardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DA815E02495D04400FEBE85 /* HandStBoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandStBoardUITests.swift; sourceTree = "<group>"; };
 		7DA815E22495D04400FEBE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7DA815F02495D38C00FEBE85 /* AllCourtControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCourtControllerViewController.swift; sourceTree = "<group>"; };
+		7DA815F02495D38C00FEBE85 /* HalfCourtControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfCourtControllerViewController.swift; sourceTree = "<group>"; };
 		7DA815F22495D3D400FEBE85 /* DrawView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView2.swift; sourceTree = "<group>"; };
 		7DA815F42495EB5300FEBE85 /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,8 +107,8 @@
 			children = (
 				7DA815BE2495D04000FEBE85 /* AppDelegate.swift */,
 				7DA815C02495D04000FEBE85 /* SceneDelegate.swift */,
-				7DA815C22495D04000FEBE85 /* ViewController.swift */,
-				7DA815F02495D38C00FEBE85 /* AllCourtControllerViewController.swift */,
+				7DA815C22495D04000FEBE85 /* AllCourtViewController.swift */,
+				7DA815F02495D38C00FEBE85 /* HalfCourtControllerViewController.swift */,
 				7DA815F42495EB5300FEBE85 /* DrawView.swift */,
 				7DA815F22495D3D400FEBE85 /* DrawView2.swift */,
 				7DA815C42495D04000FEBE85 /* Main.storyboard */,
@@ -268,10 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DA815F12495D38C00FEBE85 /* AllCourtControllerViewController.swift in Sources */,
+				7DA815F12495D38C00FEBE85 /* HalfCourtControllerViewController.swift in Sources */,
 				7DA815F32495D3D400FEBE85 /* DrawView2.swift in Sources */,
 				7DA815F52495EB5300FEBE85 /* DrawView.swift in Sources */,
-				7DA815C32495D04000FEBE85 /* ViewController.swift in Sources */,
+				7DA815C32495D04000FEBE85 /* AllCourtViewController.swift in Sources */,
 				7DA815BF2495D04000FEBE85 /* AppDelegate.swift in Sources */,
 				7DA815C12495D04000FEBE85 /* SceneDelegate.swift in Sources */,
 			);
