@@ -143,18 +143,18 @@ class HalfCourtControllerViewController: UIViewController,UIGestureRecognizerDel
         self.performSegue(withIdentifier: "toSecond", sender: self)
     }
     
-    let judgeButton2 = UIButton(type: .custom)
+    let HalfCourtJudgeButton = UIButton(type: .custom)
     let judgeButtonImage = UIImage(named: "judgeImage")
     let falseButton2 = UIImage(named: "falseImage2")
     @objc func judge(_ sender:Any){
         if flag2 == false{
-             judgeButton2.setImage(judgeButtonImage, for: .normal)
+             HalfCourtJudgeButton.setImage(judgeButtonImage, for: .normal)
             
             drawView2.setBool(j: !flag2)
             flag2 = true
         }
         else if flag2 == true{
-             judgeButton2.setImage(falseButton2, for: .normal)
+             HalfCourtJudgeButton.setImage(falseButton2, for: .normal)
             
             drawView2.setBool(j: !flag2)
             flag2 = false
@@ -179,47 +179,47 @@ class HalfCourtControllerViewController: UIViewController,UIGestureRecognizerDel
         let box_size = (boxView2.frame.maxX - boxView2.frame.minX)/10
         
         //ハーフコートに行くボタン
-        let ToHalfCourtButton = UIButton(type: .custom)
+        let ToAllCourtButton = UIButton(type: .custom)
         //ここだけminXが基準になっていることに注意
-        ToHalfCourtButton.frame = CGRect(x: boxView2.frame.minX, y: offset_line/2 - box_size/2, width: box_size*2, height: box_size)
+        ToAllCourtButton.frame = CGRect(x: boxView2.frame.minX, y: offset_line/2 - box_size/2, width: box_size*2, height: box_size)
         let picture = UIImage(named: "AllCourtImage")
-        ToHalfCourtButton.setImage(picture, for: .normal)
-        ToHalfCourtButton.imageView?.contentMode = .scaleAspectFill
-        ToHalfCourtButton.layer.masksToBounds = true
-        ToHalfCourtButton.layer.cornerRadius = box_size / 8
-        ToHalfCourtButton.addTarget(self, action: #selector(goToAllPage(_:)), for: .touchDown)
-        view.addSubview(ToHalfCourtButton)
+        ToAllCourtButton.setImage(picture, for: .normal)
+        ToAllCourtButton.imageView?.contentMode = .scaleAspectFill
+        ToAllCourtButton.layer.masksToBounds = true
+        ToAllCourtButton.layer.cornerRadius = box_size / 8
+        ToAllCourtButton.addTarget(self, action: #selector(goToAllPage(_:)), for: .touchDown)
+        view.addSubview(ToAllCourtButton)
         
         //メモをクリアにするボタン
-        let clearButton2 = UIButton(type: .custom)
-        clearButton2.frame = CGRect(x: boxView2.frame.maxX - box_size, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+        let HalfCourtClearButton = UIButton(type: .custom)
+        HalfCourtClearButton.frame = CGRect(x: boxView2.frame.maxX - box_size, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let picture1 = UIImage(named: "clearImage2")
-        clearButton2.setImage(picture1, for: .normal)
-        clearButton2.imageView?.contentMode = .scaleAspectFill
-        clearButton2.layer.masksToBounds = true
-        clearButton2.layer.cornerRadius = box_size / 8
-        clearButton2.addTarget(self, action: #selector(clearTapped(_:)), for: .touchDown)
-        view.addSubview(clearButton2)
+        HalfCourtClearButton.setImage(picture1, for: .normal)
+        HalfCourtClearButton.imageView?.contentMode = .scaleAspectFill
+        HalfCourtClearButton.layer.masksToBounds = true
+        HalfCourtClearButton.layer.cornerRadius = box_size / 8
+        HalfCourtClearButton.addTarget(self, action: #selector(clearTapped(_:)), for: .touchDown)
+        view.addSubview(HalfCourtClearButton)
         
-        let undoButton2 = UIButton(type: .custom)
-        undoButton2.frame = CGRect(x: boxView2.frame.maxX - box_size*2.5, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+        let HalfCourtUndoButton = UIButton(type: .custom)
+        HalfCourtUndoButton.frame = CGRect(x: boxView2.frame.maxX - box_size*2.5, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let picture2 = UIImage(named: "undoImage2")
-        undoButton2.setImage(picture2, for: .normal)
-        undoButton2.imageView?.contentMode = .scaleAspectFill
-        undoButton2.layer.masksToBounds = true
-        undoButton2.layer.cornerRadius = box_size / 8
-        undoButton2.addTarget(self, action: #selector(undoTapped(_:)), for: .touchDown)
-        view.addSubview(undoButton2)
+        HalfCourtUndoButton.setImage(picture2, for: .normal)
+        HalfCourtUndoButton.imageView?.contentMode = .scaleAspectFill
+        HalfCourtUndoButton.layer.masksToBounds = true
+        HalfCourtUndoButton.layer.cornerRadius = box_size / 8
+        HalfCourtUndoButton.addTarget(self, action: #selector(undoTapped(_:)), for: .touchDown)
+        view.addSubview(HalfCourtUndoButton)
         
-//        let judgeButton2 = UIButton(type: .custom)
-        judgeButton2.frame = CGRect(x: boxView2.frame.maxX - box_size*4, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+//        let HalfCourtJudgeButton = UIButton(type: .custom)
+        HalfCourtJudgeButton.frame = CGRect(x: boxView2.frame.maxX - box_size*4, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let picture3 = UIImage(named: "falseImage2")
-        judgeButton2.setImage(picture3, for: .normal)
-        judgeButton2.imageView?.contentMode = .scaleAspectFill
-        judgeButton2.layer.masksToBounds = true
-        judgeButton2.layer.cornerRadius = box_size / 8
-        judgeButton2.addTarget(self, action: #selector(judge(_:)), for: .touchDown)
-        view.addSubview(judgeButton2)
+        HalfCourtJudgeButton.setImage(picture3, for: .normal)
+        HalfCourtJudgeButton.imageView?.contentMode = .scaleAspectFill
+        HalfCourtJudgeButton.layer.masksToBounds = true
+        HalfCourtJudgeButton.layer.cornerRadius = box_size / 8
+        HalfCourtJudgeButton.addTarget(self, action: #selector(judge(_:)), for: .touchDown)
+        view.addSubview(HalfCourtJudgeButton)
         
         //パレットのボタン
         let palleteButton = UIButton(type: .custom)
@@ -229,21 +229,23 @@ class HalfCourtControllerViewController: UIViewController,UIGestureRecognizerDel
         palleteButton.imageView?.contentMode = .scaleAspectFill
         palleteButton.layer.masksToBounds = true
         palleteButton.layer.cornerRadius = box_size/8
-        //eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        //HalfCourtEraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
         view.addSubview(palleteButton)
-        
+//        
         //消しゴムのボタン
-        let eraserButton = UIButton(type: .custom)
-        eraserButton.frame = CGRect(x: boxView2.frame.maxX - box_size*7, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
+        let HalfCourtEraserButton = UIButton(type: .custom)
+        HalfCourtEraserButton.frame = CGRect(x: boxView2.frame.maxX - box_size*7, y: offset_line/2 - box_size/2, width: box_size, height: box_size)
         let erasePicture = UIImage(named: "undoImage2")
-        eraserButton.setImage(erasePicture, for: .normal)
-        eraserButton.imageView?.contentMode = .scaleAspectFill
-        eraserButton.layer.masksToBounds = true
-        eraserButton.layer.cornerRadius = box_size/8
-//        eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
-        view.addSubview(eraserButton)
+        HalfCourtEraserButton.setImage(erasePicture, for: .normal)
+        HalfCourtEraserButton.imageView?.contentMode = .scaleAspectFill
+        HalfCourtEraserButton.layer.masksToBounds = true
+        HalfCourtEraserButton.layer.cornerRadius = box_size/8
+//        HalfCourtEraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        view.addSubview(HalfCourtEraserButton)
         
+        //プレイヤーの数
         let player3_num = 7
+        //
         let angle2 = Double.pi*3/2
         let angle3 = Double.pi/2
         let trans = CGAffineTransform(rotationAngle: CGFloat(angle2))

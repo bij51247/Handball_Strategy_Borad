@@ -255,74 +255,92 @@ class AllCourtViewController:UIViewController,UIGestureRecognizerDelegate{
         drawView.setDrawingColor(color: c)
     }
     
-    //
+    //描画を一つ前に戻す
     @objc func undoTapped(_ sender:Any){
         
         drawView.undo()
     }
     
+    //ハーフコートへ移動
     @objc func goToHalfPage(_ sender:Any){
         self.performSegue(withIdentifier: "toSecond", sender: self)
     }
     
+    //描画モードのを画像を切り替えるボタン
     let judgeButton = UIButton(type: .custom)
+    //ボタンのイメージ参照
     let judgeButtonImage = UIImage(named: "judgeButtonImage")
+    //ボタンの状態を判定する関数
     let falseButton = UIImage(named: "falseButtonImage")
     @objc func judge(_ sender:Any){
         if flag == false{
+             //描画可能ボタンのイメージをセット
              judgeButton.setImage(judgeButtonImage, for: .normal)
             drawView.setBool(j: !flag)
             flag = true
         }
         else if flag == true{
+            //描画不能ボタンのセット
              judgeButton.setImage(falseButton, for: .normal)
             drawView.setBool(j: !flag)
             flag = false
         }
     }
     
-    @objc func TouchRecord(){
-           let recorder = RPScreenRecorder.shared()
-           if !recorder.isRecording{
-               recorder.startRecording { (error) in
-                   if let error = error{
-                       print(error)
-                    return
-                   }
-//                guard error == nil else{
-//                    print(error ?? <#default value#>)
+    //録画モードの関数(いずれ消すかな...)
+//    @objc func TouchRecord(){
+//           let recorder = RPScreenRecorder.shared()
+//           if !recorder.isRecording{
+//               recorder.startRecording { (error) in
+//                   if let error = error{
+//                       print(error)
 //                    return
-//                }
-               }
-           }else{
-               recorder.stopRecording { (previewVC, error) in
-                   if let previewVC = previewVC{
-                    previewVC.popoverPresentationController?.sourceView = self.view
-                       previewVC.previewControllerDelegate = self
-                       self.present(previewVC,animated: true,completion: nil)
-                   }
-                   if let error = error{
-                       print(error)
-                    return
-                   }
-//                guard error == nil else{
-//                    print(error)
+//                   }
+////                guard error == nil else{
+////                    print(error ?? <#default value#>)
+////                    return
+////                }
+//               }
+//           }else{
+//               recorder.stopRecording { (previewVC, error) in
+//                   if let previewVC = previewVC{
+//                    previewVC.popoverPresentationController?.sourceView = self.view
+//                       previewVC.previewControllerDelegate = self
+//                       self.present(previewVC,animated: true,completion: nil)
+//                   }
+//                   if let error = error{
+//                       print(error)
 //                    return
-//                }
-//                previewVC?.previewControllerDelegate = self
-//                previewVC?.popoverPresentationController?.sourceView = self.view
-//                self.present(previewVC!,animated: true,completion: nil)
-               }
-           }
-       }
+//                   }
+////                guard error == nil else{
+////                    print(error)
+////                    return
+////                }
+////                previewVC?.previewControllerDelegate = self
+////                previewVC?.popoverPresentationController?.sourceView = self.view
+////                self.present(previewVC!,animated: true,completion: nil)
+//               }
+//           }
+//       }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        //何のフラッグ?
         flag = false
+        
+        //画面を常にライトモードに
         self.overrideUserInterfaceStyle = .light
+        
+        //画面の大きさを参照?
         let myBoundSize:CGSize = UIScreen.main.bounds.size
+        
+        //コートの大きさを画面の8割に設定
+        //広告を入れるからこの大きさは変わるかも...
         let courtLength = myBoundSize.height*0.8
+        
+        //
         let boxImage = makeCourtImage(width: courtLength / 2 ,height: courtLength)
         let boxView = UIImageView(image: boxImage)
         boxView.center = view.center
@@ -352,15 +370,17 @@ class AllCourtViewController:UIViewController,UIGestureRecognizerDelegate{
         undoButton.addTarget(self, action: #selector(undoTapped(_:)), for: .touchDown)
         view.addSubview(undoButton)
         
-        let ToAllCourtButton = UIButton(type: .custom)
-        ToAllCourtButton.frame = CGRect(x:boxView.frame.minX,y:gap/3, width: gap*0.8, height: gap*0.4)
+        //ハーフコートに行くボタン
+        let ToHalfCourtButton = UIButton(type: .custom)
+        ToHalfCourtButton.frame = CGRect(x:boxView.frame.minX,y:gap/3, width: gap*0.8, height: gap*0.4)
         let half_court_Image = UIImage(named: "halfCourtImage")
-        ToAllCourtButton.setImage(half_court_Image, for: .normal)
-        ToAllCourtButton.imageView?.contentMode = .scaleAspectFill
-        ToAllCourtButton.layer.masksToBounds = true
-        ToAllCourtButton.layer.cornerRadius = gap/15
-        ToAllCourtButton.addTarget(self, action: #selector(goToHalfPage(_:)), for: .touchDown)
-        view.addSubview(ToAllCourtButton)
+        ToHalfCourtButton.setImage(half_court_Image, for: .normal)
+        ToHalfCourtButton.imageView?.contentMode = .scaleAspectFill
+        ToHalfCourtButton.layer.masksToBounds = true
+        ToHalfCourtButton.layer.cornerRadius = gap/15
+        ToHalfCourtButton.addTarget(self, action: #selector(goToHalfPage(_:)), for: .touchDown)
+        view.addSubview(ToHalfCourtButton)
+        
         
         judgeButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*4,y:gap/3, width: gap*0.4, height: gap*0.4)
         //        let picture = UIImage(named: "playerImage")
@@ -373,26 +393,27 @@ class AllCourtViewController:UIViewController,UIGestureRecognizerDelegate{
         judgeButton.addTarget(self, action: #selector(judge(_:)), for: .touchDown)
         view.addSubview(judgeButton)
         
-        let HalfPalleteButton = UIButton(type: .custom)
-        HalfPalleteButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4 * 5.5, y: gap/3, width: gap*0.4, height: gap*0.4)
+        //パレットボタン
+        let AllCourtPalleteButton = UIButton(type: .custom)
+        AllCourtPalleteButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4 * 5.5, y: gap/3, width: gap*0.4, height: gap*0.4)
         let HalfPalletPicture = UIImage(named: "undoImage2")
-        HalfPalleteButton.setImage(HalfPalletPicture, for: .normal)
-        HalfPalleteButton.imageView?.contentMode = .scaleAspectFill
-        HalfPalleteButton.layer.masksToBounds = true
-        HalfPalleteButton.layer.cornerRadius = gap/15
-        //eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
-        view.addSubview(HalfPalleteButton)
+        AllCourtPalleteButton.setImage(HalfPalletPicture, for: .normal)
+        AllCourtPalleteButton.imageView?.contentMode = .scaleAspectFill
+        AllCourtPalleteButton.layer.masksToBounds = true
+        AllCourtPalleteButton.layer.cornerRadius = gap/15
+        //AllCourtEraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        view.addSubview(AllCourtPalleteButton)
                 
 //        消しゴムのボタン
-        let eraserButton = UIButton(type: .custom)
-        eraserButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*7, y: gap/3, width: gap*0.4, height: gap*0.4)
+        let AllCourtEraserButton = UIButton(type: .custom)
+        AllCourtEraserButton.frame = CGRect(x: boxView.frame.maxX - gap*0.4*7, y: gap/3, width: gap*0.4, height: gap*0.4)
         let erasePicture = UIImage(named: "undoImage2")
-        eraserButton.setImage(erasePicture, for: .normal)
-        eraserButton.imageView?.contentMode = .scaleAspectFill
-        eraserButton.layer.masksToBounds = true
-                eraserButton.layer.cornerRadius = gap/15
-        //eraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
-        view.addSubview(eraserButton)
+        AllCourtEraserButton.setImage(erasePicture, for: .normal)
+        AllCourtEraserButton.imageView?.contentMode = .scaleAspectFill
+        AllCourtEraserButton.layer.masksToBounds = true
+                AllCourtEraserButton.layer.cornerRadius = gap/15
+        //AllCourtEraserButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        view.addSubview(AllCourtEraserButton)
         
         //レコードボタン（必要ないのでいづれ消す）
 //        let startRecordButton = UIButton()
